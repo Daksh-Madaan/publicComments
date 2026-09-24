@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>publicComments</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            font-family: "Space Grotesk", sans-serif;
+            box-sizing: border-box;
+        }
+        body {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            flex-direction: column;
+            gap: 1rem;
+            margin: 0;
+            padding: 1rem;
+            min-height: 100vh;
+        }
+        h1 {
+            font-size: clamp(1.75rem, 6vw, 3rem);
+            text-align: center;
+            margin: 0.5rem 0;
+        }
+        form {
+            width: 100%;
+            max-width: 500px;
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            gap: 0.5rem;
+        }
+        textarea {
+            width: 100%;
+            height: 100px;
+            font-size: 1rem;
+            padding: 0.5rem;
+            resize: vertical;
+        }
+        input[type="submit"] {
+            padding: 0.6rem;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+        .comment {
+            border: 1px solid black;
+            border-radius: 0.25rem;
+            padding: 0.5rem;
+            width: 100%;
+            max-width: 500px;
+            text-align: left;
+        }
+        .comment-header {
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px solid gray;
+            color: gray;
+            font-size: 0.85rem;
+            flex-wrap: wrap;
+            gap: 0.25rem;
+        }
+        .comment-header p,
+        .comment p {
+            margin: 0.3rem 0;
+        }
+        .comment-content {
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+    </style>
+</head>
+<body>
+    <h1>publicComments</h1>
+    <form method="POST">
+        <textarea required name="text"></textarea>
+        <input type="submit" value="Post Comment">
+    </form>
+
+    {% for d in display %}
+    <div class="comment">
+        <div class="comment-header">
+            <p>#{{ d.id }}</p>
+            <p>{{ d.date.strftime('%b %d, %Y %H:%M') }}</p>
+        </div>
+        <p class="comment-content">{{ d.content }}</p>
+    </div>
+    {% endfor %}
+</body>
+</html>
