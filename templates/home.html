@@ -83,8 +83,10 @@
 
     {% for d in display %}
     <div class="comment">
+        
         <div class="comment-header">
             <p>#{{ d.id }}</p>
+            <p>{{d.author.username}}</p>
             <p>{{ d.date.strftime('%b %d, %Y %H:%M') }}</p>
         </div>
         <p class="comment-content">{{ d.content }}</p>
